@@ -1,41 +1,53 @@
 #include <stdio.h>
 
-int residue(int x, int i)
+int residue(int n, int i)
 {
-    while (x >= i)
+    while (n >= i)
     {
-        x -= i;
+        n -= i;
     }
-    return x == 0 ? 0 : 1;
+    return n == 0 ? 0 : 1;
 }
 
-int div(int x)
+int simple_num(int n)
 {
-    int x1 = x;
-    for (int i = 9; i > 2; i--)
+    for (int i = n - 1; i > 1; i--)
     {
-        if (residue(x, i) == 0)
+        if (residue(n, i) == 0)
         {
-            ;
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int largest_divisor(int n)
+{
+    for (int i = n; i > 1; i--)
+    {
+        if (simple_num(i) && residue(n, i) == 0)
+        {
             return i;
-        };
-    };
+        }
+    }
     return 0;
 }
 
 int main()
 {
-    int x;
-    scanf("%d", &x);
-    if (x < 0)
-        x *= -1;
-    if (x < 2)
+    int num;
+    scanf("%d", &num);
+    if (num < 0)
+    {
+        num *= -1;
+    }
+    if (num < 2)
     {
         printf("n/a");
     }
     else
     {
-        printf("%d", div(x));
+        printf("%d", largest_divisor(num));
     }
     return 0;
 }
