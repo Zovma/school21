@@ -37,10 +37,7 @@ int main()
 {
     int num;
     scanf("%d", &num);
-    if (num < 0)
-    {
-        num *= -1;
-    }
+    num = num < 0 ? num * -1 : num;
     if (num < 2)
     {
         printf("n/a");
